@@ -37,6 +37,7 @@ function HKP(keyServerBaseUrl) {
 
 /**
  * Search for a public key on the key server either by key ID or part of the user ID.
+ * @param  {Object}   options The options for searching a public key.
  * @param  {String}   options.keyID   The long public key ID.
  * @param  {String}   options.query   This can be any part of the key user ID such as name
  *   or email address.
@@ -47,8 +48,8 @@ HKP.prototype.lookup = function(options) {
   let uri = this._baseUrl + '/pks/lookup?op=get&options=mr&search=';
   const fetch = this._fetch;
 
-  if (options.keyId) {
-    uri += '0x' + encodeURIComponent(options.keyId);
+  if (options.keyID) {
+    uri += '0x' + encodeURIComponent(options.keyID);
   } else if (options.query) {
     uri += encodeURIComponent(options.query);
   } else {
